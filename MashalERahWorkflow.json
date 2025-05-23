@@ -1,0 +1,328 @@
+{
+  "name": "MashalERahWorkflow",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "mode": "webhook",
+        "authentication": "basicAuth",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        60
+      ],
+      "id": "ce73bbc3-e414-4c71-8b13-95059a30f382",
+      "name": "When chat message received",
+      "webhookId": "ea5130bf-1a90-49e5-8122-4aacdb781480",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "GWUuYEBLYbteLXHW",
+          "name": "BasicAuthCreds"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an AI Bot named \"Mashal-E-Rah\" trained by Sameer Bin Khalid from team \"Pakistan Bot\". Your job is to assist with queries related to weather and also related to traffic related routes and laws."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -20,
+        60
+      ],
+      "id": "aaf08357-9bf4-416f-bbd4-932a518093ea",
+      "name": "AI Agent",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "name": "current_date_time_python_tool",
+        "description": "Call this tool to get the latest date or time",
+        "language": "python",
+        "pythonCode": "import datetime\nreturn datetime.datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        60,
+        440
+      ],
+      "id": "21a64e85-c32d-4781-8407-6ce37ee6c636",
+      "name": "Current Time Tool"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        440
+      ],
+      "id": "d3b2d6e2-a0ca-417c-bf61-37b4ad6de213",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "R4Gs4LNrS83QV7IK",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Get the current weather for a specific city",
+        "url": "http://api.weatherapi.com/v1/current.json",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "key",
+              "valueProvider": "fieldValue",
+              "value": "81d02ada25fa4a16801210418251605"
+            },
+            {
+              "name": "q"
+            },
+            {
+              "name": "aqi",
+              "valueProvider": "fieldValue",
+              "value": "no"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        440
+      ],
+      "id": "381bc0c5-74a9-463f-a97d-d311316c8e3a",
+      "name": "Weather API"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Get the duration (time in seconds) required to reach from a source place to a destination place.",
+        "method": "POST",
+        "url": "https://routes.googleapis.com/directions/v2:computeRoutes",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "X-Goog-Api-Key",
+              "valueProvider": "fieldValue",
+              "value": "AIzaSyDJTzyF1MKnnsXn1U_YHqywFHD1l9VbEMo"
+            },
+            {
+              "name": "X-Goog-FieldMask",
+              "valueProvider": "fieldValue",
+              "value": "routes.duration,routes.staticDuration,routes.distanceMeters"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"origin\": {\n    \"address\": {source_address}\n  },\n  \"destination\": {\n    \"address\": {destination_address}\n  },\n  \"travelMode\": \"DRIVE\",\n  \"routingPreference\": \"TRAFFIC_AWARE\",\n  \"computeAlternativeRoutes\": false,\n  \"routeModifiers\": {\n    \"avoidTolls\": false,\n    \"avoidHighways\": false,\n    \"avoidFerries\": false\n  },\n  \"languageCode\": \"en-US\",\n  \"units\": \"IMPERIAL\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "source_address",
+              "description": "The name of the origin or source place",
+              "type": "string"
+            },
+            {
+              "name": "destination_address",
+              "description": "The name of the target or destination place",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        620,
+        440
+      ],
+      "id": "dac55f0d-9136-4d39-93e0-bb3d29984f5e",
+      "name": "Google Maps Routes Traffic API"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -140,
+        440
+      ],
+      "id": "923c3790-5042-4381-aa68-7284fb3525d5",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "m8TcKu8GxXfEscFZ",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "get_traffic_laws_rules_info",
+        "description": "call this tool get information about traffic laws or rules",
+        "language": "python",
+        "pythonCode": "return \"\"\"\n  {\n    \"Traffic_Laws_Pakistan\": {\n      \"Licensing\": {\n        \"Minimum_Age\": 18,\n        \"Learner_Permit_Validity_Months\": 6,\n        \"Driving_Licence_Validity_Years\": 5,\n        \"Requirements\": [\n          \"Valid CNIC\",\n          \"Medical fitness certificate\",\n          \"Written and practical driving tests\"\n        ]\n      },\n      \"Vehicle_Requirements\": {\n        \"Registration\": true,\n        \"Number_Plates\": \"Front and rear, as prescribed\",\n        \"Roadworthiness\": true\n      },\n      \"Speed_Limits_kmh\": {\n        \"Motorways\": 120,\n        \"Urban_Residential\": 40,\n        \"Urban_Arterial\": 80,\n        \"G.T_Road\": 100,\n        \"HTV_on_Motorways\": 110\n      },\n      \"Common_Offenses_and_Penalties_Rs\": {\n        \"Exceeding_Speed_Limit\": {\n          \"Motorcycle\": 500,\n          \"Motorcar_Jeep\": 1000,\n          \"LTV\": 1000,\n          \"HTV_PSV\": 1500\n        },\n        \"Overloading_Passengers\": {\n          \"Motorcycle\": 1000,\n          \"Motorcar_Jeep\": 1500,\n          \"LTV\": 2000,\n          \"HTV_PSV\": 2000\n        },\n        \"Traffic_Signal_Violation\": {\n          \"Motorcycle\": 500,\n          \"Motorcar_Jeep\": 1000,\n          \"LTV\": 1000,\n          \"HTV_PSV\": 1500\n        }\n      },\n      \"Road_Signs\": {\n        \"Categories\": [\n          \"Warning signs\",\n          \"Informative signs\",\n          \"Regulatory signs\"\n        ],\n        \"Examples\": [\n          \"Curve to the left\",\n          \"Steep descent\",\n          \"Pedestrian crossing\",\n          \"Hospital\",\n          \"No entry\"\n        ]\n      },\n      \"Enforcement_Agencies\": {\n        \"National_Highways_and_Motorway_Police\": {\n          \"Responsibilities\": [\n            \"Enforcement of traffic laws on national highways and motorways\",\n            \"Use of speed cameras\",\n            \"Patrolling with vehicles and motorbikes\"\n          ]\n        },\n        \"City_Traffic_Police\": {\n          \"Responsibilities\": [\n            \"Enforcement of traffic laws within city limits\",\n            \"Issuance of traffic tickets\",\n            \"Management of city traffic flow\"\n          ]\n        }\n      },\n      \"E_Challan_System\": {\n        \"Implemented_By\": \"Punjab Safe Cities Authority\",\n        \"Features\": [\n          \"Automatic Vehicle Number Plate Recognition (ANPR)\",\n          \"Electronic ticketing for traffic violations\",\n          \"Online portal for checking and paying fines\"\n        ]\n      },\n      \"Legal_Framework\": {\n        \"Provincial_Motor_Vehicles_Ordinance_1965\": \"Governs licensing, vehicle registration, and traffic regulations\",\n        \"Pakistan_Penal_Code\": \"Applies to offenses such as reckless driving and driving under influence\"\n      }\n    }\n  }\n\"\"\""
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        260,
+        440
+      ],
+      "id": "e9573231-8124-4ec4-a289-b644bdcc6313",
+      "name": "Traffic Law Info"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Makes an HTTP request with the number of months as prediction_months and gets the prediction data related to fuel/petrol prices",
+        "url": "=http://petropredict:8899",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "=prediction_months",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', `Given number of months to predict the fuel or petrol price for`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        440
+      ],
+      "id": "48f3ab90-6137-46e2-ab4e-7c0254d9e5fe",
+      "name": "Fuel Predictor"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Current Time Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weather API": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Maps Routes Traffic API": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traffic Law Info": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fuel Predictor": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "811863c5-f34c-4cf7-8529-6211787d20f6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9d421834dd0cec0ce6d07e0c0bb008052f5dd96e6365ff609720dac1850d70f1"
+  },
+  "id": "D7yeYH2JXyaxowWf",
+  "tags": [
+    {
+      "createdAt": "2025-05-22T19:33:09.151Z",
+      "updatedAt": "2025-05-22T19:33:09.151Z",
+      "id": "BYIjUGvGY2c9Y8aj",
+      "name": "0.0.1"
+    }
+  ]
+}
