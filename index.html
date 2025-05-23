@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mashal-e-Rah Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="center-align">
+            <h1>Mashal-e-Rah</h1>
+            <p>Your AI assistant for traffic, weather, and legal queries.</p>
+        </header>
+
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="./img/weather.jpg" alt="Weather">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text">Weather<i class="material-icons right">more_vert</i></span>
+                        <p>Get real-time weather updates.</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text">Weather<i class="material-icons right">close</i></span>
+                        <p>Ask Mashal-e-Rah about the current weather conditions, forecasts, and more for any location.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="./img/traffic.jpg" alt="Traffic Routes">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text">Traffic Routes<i class="material-icons right">more_vert</i></span>
+                        <p>Find the best route and timings.</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text">Traffic Routes<i class="material-icons right">close</i></span>
+                        <p>Mashal-e-Rah can provide information on traffic conditions and suggest optimal travel routes and timings.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="./img/traffic_laws.jpg" alt="Laws">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text">Traffic & General Laws<i class="material-icons right">more_vert</i></span>
+                        <p>Understand traffic and general laws.</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text">Traffic & General Laws<i class="material-icons right">close</i></span>
+                        <p>Get clarifications on various traffic regulations and general legal queries from Mashal-e-Rah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <h5>Chat with Mashal-e-Rah</h5>
+                <div class="auth-inputs">
+                    <input type="email" id="emailInput" placeholder="Email" />
+                    <input type="password" id="passwordInput" placeholder="Password" />
+                </div>
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Mashal-E-Rah here, any queries I can help with ?">
+                <button id="sendButton" class="btn waves-effect waves-light"><i class="material-icons">send</i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
