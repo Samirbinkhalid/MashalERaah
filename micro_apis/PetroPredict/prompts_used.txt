@@ -1,0 +1,6 @@
+need a python application that uses facebook prophet to predict fuel prices given a csv file.
+The csv file will have 2 columns, first would be date in ISO format and the 2nd would be price.
+The date column will represent 1st of every month since 2019.
+need dummy records to put in the csv files for 5 years, the price would be in PKR. Price was 120 in 2019 and now in May 2025 its 240.
+Prophet can take this date and price column into consideration and should make a prediction for next 5 months and also save the prediction along with the graphs png in the project directory.
+

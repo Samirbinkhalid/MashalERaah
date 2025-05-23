@@ -19,7 +19,7 @@ Mashal-E-Rah is a chatbot developed using [n8n](https://n8n.io/) that provides i
     - `Prophet API` runs in a separate Docker container.
     - `PostgreSQL` uses a Docker named volume for persistent storage.
 
-    ### Screenshot
+    ### N8N Workflow
     ![Mashal-E-Rah Chatbot n8n Workflow](architecture/backend_architecture.png)
 
 ## Getting Started
