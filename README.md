@@ -13,6 +13,10 @@ Mashal-E-Rah is a chatbot developed using [n8n](https://n8n.io/) that provides i
 
 ## Architecture
 
+  ### Diagram  
+  ![Complete Architecture](architecture/mashalerah_arch_complete.png)
+
+  ### N8N Workflow Diagram  
 - **n8n Workflow**: Orchestrates all chatbot logic and integrations. The workflow is saved as a `.json` file.
 - **Dockerized Deployment**:
     - `n8n` runs in a Docker container.
