@@ -1,0 +1,898 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1117; /* Changed to dark gray-blue for better contrast */
+    color: #e0e0e0; /* Light text for dark background */
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(13, 17, 23, 0.92), rgba(13, 17, 23, 0.92)), /* Match new background color */
+        repeating-linear-gradient(
+            45deg,
+            #090c10, /* Darker shade for pattern */
+            #090c10 10px,
+            #0d1117 10px,
+            #0d1117 20px
+        );
+    background-size: 200% 200%;
+    animation: moveBackground 60s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container-fluid {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header with robot icon on right */
+header {
+    background-color: #1a1a2e;
+    padding: 1.5rem 0;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.5);
+    border: 1px solid #2a2a4e;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    /* Center the title text */
+    position: relative;
+    z-index: 2;
+}
+
+/* Animated Robot Face */
+.header-robot-icon {
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.robot-face {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.robot-head {
+    background-color: #16213e;
+    border: 2px solid #00b4d8;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
+}
+
+/* Robot Eyes */
+.robot-eyes {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+}
+
+.eye {
+    width: 18px;
+    height: 18px;
+    background-color: #0f3460;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid #00b4d8;
+    overflow: hidden;
+}
+
+.pupil {
+    width: 8px;
+    height: 8px;
+    background-color: #00b4d8;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pupil-move 4s ease-in-out infinite;
+}
+
+.eyelid {
+    width: 100%;
+    height: 100%;
+    background-color: #16213e;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    border-bottom: 2px solid #00b4d8;
+    animation: blink 4s ease-in-out infinite;
+}
+
+/* Robot Mouth */
+.robot-mouth {
+    width: 40%;
+    height: 20px;
+    position: absolute;
+    bottom: 20%;
+    left: 30%;
+}
+
+.mouth-line {
+    width: 100%;
+    height: 2px;
+    background-color: #00b4d8;
+    position: absolute;
+    top: 50%;
+    animation: smile 8s ease-in-out infinite;
+}
+
+/* Robot Antenna */
+.robot-antenna {
+    width: 4px;
+    height: 15px;
+    background-color: #00b4d8;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.robot-antenna:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #00b4d8;
+    border-radius: 50%;
+    animation: antenna-pulse 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes blink {
+    0%, 45%, 55%, 100% {
+        top: -100%;
+    }
+    50% {
+        top: 0;
+    }
+}
+
+@keyframes pupil-move {
+    0%, 100% {
+        transform: translate(-50%, -50%);
+    }
+    25% {
+        transform: translate(-80%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -80%);
+    }
+    75% {
+        transform: translate(-20%, -50%);
+    }
+}
+
+@keyframes smile {
+    0%, 100% {
+        height: 2px;
+        border-radius: 0;
+        top: 50%;
+    }
+    30%, 70% {
+        height: 10px;
+        border-radius: 0 0 10px 10px;
+        top: 30%;
+    }
+}
+
+@keyframes antenna-pulse {
+    0%, 100% {
+        background-color: #00b4d8;
+        box-shadow: 0 0 5px #00b4d8;
+    }
+    50% {
+        background-color: #3a86ff;
+        box-shadow: 0 0 15px #3a86ff;
+    }
+}
+
+header p.lead {
+    color: #e0e0e0;
+    font-size: 1.15rem;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Torch Icon - Left side of header */
+.header-left-icon {
+    position: absolute;
+    left: 2.5rem; /* Slightly more space from edge */
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.mashal-icon {
+    font-size: 5.5rem; /* Increased from 4rem */
+    color: #ff7800; /* Fire orange color */
+    text-shadow: 0 0 10px #ff4500, 0 0 20px #ff7800, 0 0 30px #ff9000;
+    animation: flameEffect 3s ease-in-out infinite;
+}
+
+@keyframes flameEffect {
+    0%, 100% {
+        text-shadow: 0 0 10px #ff4500, 0 0 20px #ff7800, 0 0 30px #ff9000;
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 0 0 15px #ff4500, 0 0 25px #ff7800, 0 0 35px #ff9000;
+        transform: scale(1.05);
+    }
+}
+
+/* Main layout row */
+.row {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Left and right sidebars */
+.left-sidebar, .right-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 600px; /* Match the exact height of chat container */
+}
+
+/* Feature Cards - Styled to contrast with dark background */
+.feature-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 15px;
+    flex: 1;
+    max-height: calc(50% - 7.5px);
+    display: flex;
+    flex-direction: column;
+    background-color: #0f3460; /* Darker blue for cards */
+    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.3);
+}
+
+.feature-card:last-child {
+    margin-bottom: 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.4);
+    border: 1px solid #3a86ff; /* Highlight border on hover */
+}
+
+.feature-card .card-img-top {
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 2px solid #16213e; /* Subtle border under image */
+}
+
+.feature-card .card-body {
+    padding: 0.75rem;
+    background-color: #0f3460; /* Match card background */
+    text-align: center;
+    flex-grow: 0;
+}
+
+.feature-card .card-title {
+    color: #00b4d8; /* Bright blue to match robot icon */
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card .card-title i {
+    color: #3a86ff; /* Different blue for icons */
+}
+
+.feature-card .card-text {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0; /* Light text for readability */
+}
+
+.feature-card .card-footer {
+    background-color: #16213e; /* Slightly darker for footer */
+    font-size: 0.8rem;
+    padding: 0.75rem;
+    border-top: 1px solid #2a2a4e;
+    text-align: center;
+    color: #b8b8d0; /* Muted text color */
+}
+
+/* Animated SVG Logos */
+.animated-logo {
+    height: 120px;
+    background-color: #0a2342;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.feature-card .animated-logo {
+    border-bottom: 2px solid #16213e;
+}
+
+/* Weather Logo Animations - Modified to animate only sun rays */
+.weather-logo .sun {
+    /* Sun remains static - no animation */
+}
+
+.weather-logo .sun-rays {
+    animation: raysPulse 4s ease-in-out infinite;
+    transform-origin: 40px 38px; /* Center point of the sun */
+}
+
+.weather-logo .cloud {
+    /* Cloud remains static - no animation */
+}
+
+/* New animation for sun rays growing and shrinking */
+@keyframes raysPulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Existing raindrops animation */
+.weather-logo .rain path {
+    animation: rainFall 2s infinite;
+    opacity: 0;
+}
+
+.weather-logo .rain path:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.weather-logo .rain path:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.weather-logo .rain path:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes rainFall {
+    0% { transform: translateY(-10px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* Traffic Routes Logo Animations */
+.traffic-logo .road-markings rect {
+    animation: roadMove 3s linear infinite;
+}
+
+/* Removed car-1 animation */
+
+.traffic-logo .car-2 {
+    animation: carMove 6s linear infinite reverse;
+}
+
+/* Slow car animation */
+.traffic-logo .car-slow {
+    animation: carMoveSlow 12s linear infinite; /* Doubled the duration for slower movement */
+}
+
+@keyframes roadMove {
+    from { transform: translateX(20px); }
+    to { transform: translateX(-20px); }
+}
+
+@keyframes carMove {
+    0% { transform: translateX(30px); }
+    100% { transform: translateX(-30px); }
+}
+
+@keyframes carMoveSlow {
+    0% { transform: translateX(30px); }
+    100% { transform: translateX(-30px); }
+}
+
+/* Traffic Laws Logo Animations */
+.laws-logo .gavel {
+    animation: gavelMove 3s ease-in-out infinite;
+    transform-origin: 70px 20px;
+}
+
+.laws-logo .traffic-sign {
+    animation: pulse 4s infinite alternate;
+}
+
+@keyframes gavelMove {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-20deg); }
+}
+
+/* Fuel Price Logo Animations - Updated with arrows */
+.fuel-logo .price-text {
+    animation: priceChange 8s infinite;
+}
+
+.fuel-logo .fuel-drops {
+    animation: dropsMove 3s infinite;
+}
+
+/* Arrow animations with synchronized opposite movement */
+.fuel-logo .arrow-group {
+    animation: arrowsMove 3s ease-in-out infinite;
+}
+
+@keyframes arrowsMove {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(0); /* No group movement */
+    }
+}
+
+.fuel-logo .up-arrow {
+    animation: arrowMoveUp 3s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.fuel-logo .down-arrow {
+    animation: arrowMoveDown 3s ease-in-out infinite;
+    transform-origin: center top;
+    /* Removed delay so arrows move simultaneously */
+}
+
+@keyframes arrowMoveUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes arrowMoveDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Fuel drops animation */
+.fuel-logo .fuel-drops circle {
+    animation: dropFall 2s infinite;
+    opacity: 0; /* Start invisible */
+}
+
+.fuel-logo .fuel-drops circle:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.fuel-logo .fuel-drops circle:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.fuel-logo .fuel-drops circle:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes dropFall {
+    0% { 
+        transform: translateY(-10px); 
+        opacity: 0; 
+    }
+    30% { 
+        opacity: 1; 
+    }
+    80% {
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(15px); 
+        opacity: 0; 
+    }
+}
+
+/* Chat Container - Contrasting with the dark theme */
+.chat-container {
+    background-color: #16213e; /* Slightly lighter than feature cards */
+    border-radius: 0.75rem;
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.75rem 2rem rgba(0,0,0,0.3);
+    position: relative;
+    border: 1px solid #2a2a4e;
+}
+
+.chat-container:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #00b4d8, #3a86ff, #7209b7, #f72585, #4cc9f0);
+    z-index: -1;
+    border-radius: 1rem;
+    opacity: 0.7; /* Slightly more visible on dark background */
+    filter: blur(8px);
+    animation: glowAnimation 10s ease infinite;
+}
+
+@keyframes glowAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.chat-header {
+    background-color: #0f3460; /* Darker blue for header */
+    color: white;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #2a2a4e;
+}
+
+.chat-header h5 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+.chat-header h5 i {
+    color: #00b4d8; /* Match robot icon */
+}
+
+.auth-inputs .form-control-sm {
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+}
+
+.auth-inputs .form-control-sm::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+/* Chat window - position relative for absolute positioning of typing indicator */
+.chat-window {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #1a1a2e; /* Match main theme */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Enable absolute positioning of child elements */
+}
+
+.chat-message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 15px; /* Increase bottom margin for messages */
+    max-width: 75%;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.user-message {
+    background-color: #3a86ff; /* Brighter blue for user messages */
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+    background-color: #0f3460; /* Match feature card background */
+    color: #e0e0e0;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+/* Updated Bot Typing Animation - fixed at bottom */
+.bot-typing-animation {
+    position: fixed; /* Changed from absolute to fixed */
+    z-index: 1000; /* Higher z-index to ensure it stays on top */
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 25px;
+    background-color: #0f3460;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #2a2a4e;
+    min-width: max-content;
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform-origin: bottom center;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+    /* These will be calculated dynamically in JS */
+}
+
+.bot-typing-animation.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.robot-icon {
+    color: #00b4d8;
+    font-size: 1rem;
+    margin-right: 12px;
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+}
+
+.typing-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 0 4px;
+    flex-shrink: 0; /* Prevent text from shrinking */
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    flex-shrink: 0; /* Prevent dots from shrinking */
+}
+
+.bot-typing-animation .dot {
+    width: 8px; /* Increased from 5px */
+    height: 8px; /* Increased from 5px */
+    margin: 0 4px; /* Increased spacing between dots */
+    background-color: #00b4d8; 
+    border-radius: 50%;
+    animation: botTyping 1.4s infinite ease-in-out both;
+}
+
+.bot-typing-animation .dot:nth-child(1) { animation-delay: -0.32s; }
+.bot-typing-animation .dot:nth-child(2) { animation-delay: -0.16s; }
+.bot-typing-animation .dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes botTyping {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Markdown content styling in bot messages - updated for dark theme */
+.bot-message h1, .bot-message h2, .bot-message h3 { 
+    margin-top: 0.5em; 
+    margin-bottom: 0.25em; 
+    color: #00b4d8; /* Bright blue for headings */ 
+}
+.bot-message p { margin-bottom: 0.5em; }
+.bot-message ul, .bot-message ol { margin-left: 20px; margin-bottom: 0.5em; }
+.bot-message code { 
+    background-color: #16213e; 
+    padding: 2px 4px; 
+    border-radius: 3px; 
+    font-family: monospace;
+    color: #4cc9f0; /* Light blue for code */
+}
+.bot-message pre { 
+    background-color: #16213e; 
+    padding: 10px; 
+    border-radius: 5px; 
+    overflow-x: auto;
+    border: 1px solid #2a2a4e;
+}
+.bot-message blockquote { 
+    border-left: 3px solid #3a86ff; 
+    padding-left: 10px; 
+    margin-left: 0; 
+    font-style: italic; 
+    color: #b8b8d0;
+}
+
+.chat-input-area {
+    padding: 0.75rem 1rem;
+    background-color: #0f3460; /* Darker than chat window */
+    border-top: 1px solid #2a2a4e;
+}
+
+#chatInput {
+    border-radius: 20px;
+    border-right: none;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #ffffff;
+    margin-right: 10px; /* Add additional spacing */
+}
+
+#chatInput::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#chatInput:focus {
+    box-shadow: none;
+    border-color: #3a86ff;
+    background-color: rgba(255,255,255,0.15);
+}
+
+#sendButton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-radius: 20px;
+    background-color: #00b4d8; /* Bright blue for send button */
+    border-color: #00b4d8;
+}
+
+#sendButton:hover {
+    background-color: #3a86ff;
+    border-color: #3a86ff;
+}
+
+/* Traffic Laws Logo Animation with sequenced paper movement */
+.laws-logo .paper-right {
+    animation: paperMoveRight 6s ease-in-out infinite;
+}
+
+.laws-logo .paper-left {
+    animation: paperMoveRight 6s ease-in-out infinite;
+    animation-delay: 2s; /* Start after right paper begins moving */
+}
+
+@keyframes paperMoveRight {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(10px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+}
+
+/* If existing animations need to be disabled */
+.laws-logo .gavel, .laws-logo .traffic-sign {
+    animation: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .chat-container {
+        height: 500px; /* Slightly smaller on medium screens */
+    }
+    
+    .left-sidebar, .right-sidebar {
+        height: 500px; /* Match chat container */
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    .left-sidebar, .right-sidebar {
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    
+    .left-sidebar .feature-card, .right-sidebar .feature-card {
+        width: calc(50% - 8px);
+        margin-right: 8px;
+        margin-left: 8px;
+        height: 200px;
+        max-height: none;
+    }
+    
+    .chat-container {
+        height: 400px; /* Smaller on mobile */
+        margin-bottom: 1rem;
+    }
+    
+    .chat-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .auth-inputs {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .auth-inputs .form-control-sm {
+        margin-bottom: 5px;
+    }
+    
+    header {
+        padding: 1rem 0;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.1em;
+    }
+    
+    header p.lead {
+        font-size: 1rem;
+    }
+    
+    .mashal-icon {
+        font-size: 4rem; /* Adjusted for medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .left-sidebar .feature-card, .right-sidebar .feature-card {
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.08em;
+    }
+    
+    .mashal-icon {
+        font-size: 3.5rem; /* Adjusted for small screens */
+    }
+}

@@ -1,0 +1,88 @@
+{
+  "Traffic_Laws_Pakistan": {
+    "Licensing": {
+      "Minimum_Age": 18,
+      "Learner_Permit_Validity_Months": 6,
+      "Driving_Licence_Validity_Years": 5,
+      "Requirements": [
+        "Valid CNIC",
+        "Medical fitness certificate",
+        "Written and practical driving tests"
+      ]
+    },
+    "Vehicle_Requirements": {
+      "Registration": true,
+      "Number_Plates": "Front and rear, as prescribed",
+      "Roadworthiness": true
+    },
+    "Speed_Limits_kmh": {
+      "Motorways": 120,
+      "Urban_Residential": 40,
+      "Urban_Arterial": 80,
+      "G.T_Road": 100,
+      "HTV_on_Motorways": 110
+    },
+    "Common_Offenses_and_Penalties_Rs": {
+      "Exceeding_Speed_Limit": {
+        "Motorcycle": 500,
+        "Motorcar_Jeep": 1000,
+        "LTV": 1000,
+        "HTV_PSV": 1500
+      },
+      "Overloading_Passengers": {
+        "Motorcycle": 1000,
+        "Motorcar_Jeep": 1500,
+        "LTV": 2000,
+        "HTV_PSV": 2000
+      },
+      "Traffic_Signal_Violation": {
+        "Motorcycle": 500,
+        "Motorcar_Jeep": 1000,
+        "LTV": 1000,
+        "HTV_PSV": 1500
+      }
+    },
+    "Road_Signs": {
+      "Categories": [
+        "Warning signs",
+        "Informative signs",
+        "Regulatory signs"
+      ],
+      "Examples": [
+        "Curve to the left",
+        "Steep descent",
+        "Pedestrian crossing",
+        "Hospital",
+        "No entry"
+      ]
+    },
+    "Enforcement_Agencies": {
+      "National_Highways_and_Motorway_Police": {
+        "Responsibilities": [
+          "Enforcement of traffic laws on national highways and motorways",
+          "Use of speed cameras",
+          "Patrolling with vehicles and motorbikes"
+        ]
+      },
+      "City_Traffic_Police": {
+        "Responsibilities": [
+          "Enforcement of traffic laws within city limits",
+          "Issuance of traffic tickets",
+          "Management of city traffic flow"
+        ]
+      }
+    },
+    "E_Challan_System": {
+      "Implemented_By": "Punjab Safe Cities Authority",
+      "Features": [
+        "Automatic Vehicle Number Plate Recognition (ANPR)",
+        "Electronic ticketing for traffic violations",
+        "Online portal for checking and paying fines"
+      ]
+    },
+    "Legal_Framework": {
+      "Provincial_Motor_Vehicles_Ordinance_1965": "Governs licensing, vehicle registration, and traffic regulations",
+      "Pakistan_Penal_Code": "Applies to offenses such as reckless driving and driving under influence"
+    }
+  }
+}

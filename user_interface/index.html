@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mashal-e-Rah Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Added robotic style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- For icons -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div> <!-- For 2D game-like traffic animation -->
+
+    <div class="container-fluid mt-4">
+        <header class="text-center mb-4 position-relative">
+            <!-- Torch icon on left side -->
+            <div class="header-left-icon">
+                <i class="fas fa-fire-alt mashal-icon"></i>
+            </div>
+            
+            <!-- Animated robot face replacing simple icon -->
+            <div class="header-robot-icon">
+                <div class="robot-face">
+                    <div class="robot-head">
+                        <div class="robot-eyes">
+                            <div class="eye left-eye">
+                                <div class="pupil"></div>
+                                <div class="eyelid"></div>
+                            </div>
+                            <div class="eye right-eye">
+                                <div class="pupil"></div>
+                                <div class="eyelid"></div>
+                            </div>
+                        </div>
+                        <div class="robot-mouth">
+                            <div class="mouth-line"></div>
+                        </div>
+                        <div class="robot-antenna"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Title centered without robot icon -->
+            <h1>Mashal-e-Rah</h1>
+            <p class="lead">Your AI assistant for traffic, weather, and legal queries.</p>
+        </header>
+
+        <!-- Three-column layout with chat in center, cards on sides -->
+        <div class="row">
+            <!-- Left sidebar with 2 feature cards -->
+            <div class="col-md-3 left-sidebar">
+                <div class="card mb-4 shadow-sm feature-card">
+                    <!-- Weather animated logo -->
+                    <div class="card-img-top animated-logo weather-logo">
+                        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Sun at the bottom layer -->
+                            <circle class="sun" cx="40" cy="38" r="12" fill="#FFD700"/>
+                            
+                            <!-- Sun rays in the middle layer -->
+                            <g class="sun-rays">
+                                <line x1="40" y1="20" x2="40" y2="16" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="40" y1="60" x2="40" y2="56" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="22" y1="38" x2="18" y2="38" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="62" y1="38" x2="58" y2="38" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="27" y1="25" x2="24" y2="22" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="56" y1="54" x2="53" y2="51" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="27" y1="51" x2="24" y2="54" stroke="#FFD700" stroke-width="2"/>
+                                <line x1="56" y1="22" x2="53" y2="25" stroke="#FFD700" stroke-width="2"/>
+                            </g>
+                            
+                            <!-- Cloud on top layer - appears in front of sun -->
+                            <path class="cloud" d="M45,40 Q45,30 55,30 Q65,30 65,40 Q75,40 75,50 Q75,60 65,60 L35,60 Q25,60 25,50 Q25,40 35,40 Z" fill="#F0F0F0"/>
+                            
+                            <!-- Raindrops adjusted -->
+                            <g class="rain">
+                                <path d="M35,65 Q35,70 32,70 Q29,70 29,65 Q29,62 32,58 Q35,62 35,65 Z" fill="#00A8E8"/>
+                                <path d="M50,65 Q50,70 47,70 Q44,70 44,65 Q44,62 47,58 Q50,62 50,65 Z" fill="#00A8E8"/>
+                                <path d="M65,65 Q65,70 62,70 Q59,70 59,65 Q59,62 62,58 Q65,62 65,65 Z" fill="#00A8E8"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-cloud-sun mr-2"></i>Weather</h5>
+                        <p class="card-text">Get real-time weather updates.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Ask about current conditions, forecasts, and more.
+                    </div>
+                </div>
+                
+                <div class="card mb-4 shadow-sm feature-card">
+                    <!-- Traffic Routes animated logo -->
+                    <div class="card-img-top animated-logo traffic-logo">
+                        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Road -->
+                            <rect x="0" y="20" width="100" height="40" fill="#444444"/>
+                            <!-- Road markings -->
+                            <g class="road-markings">
+                                <rect x="10" y="38" width="10" height="4" fill="#FFFFFF"/>
+                                <rect x="30" y="38" width="10" height="4" fill="#FFFFFF"/>
+                                <rect x="50" y="38" width="10" height="4" fill="#FFFFFF"/>
+                                <rect x="70" y="38" width="10" height="4" fill="#FFFFFF"/>
+                                <rect x="90" y="38" width="10" height="4" fill="#FFFFFF"/>
+                            </g>
+                            <!-- Blue Car (moving slowly) -->
+                            <g class="car-slow">
+                                <rect x="10" y="30" width="18" height="9" rx="2" fill="#4CC9F0"/>
+                                <rect x="12" y="27" width="13" height="6" rx="1" fill="#4CC9F0"/>
+                                <circle cx="14" cy="39" r="2" fill="#111111"/>
+                                <circle cx="24" cy="39" r="2" fill="#111111"/>
+                            </g>
+                            <!-- Red Car (normal speed) -->
+                            <g class="car-2">
+                                <rect x="30" y="45" width="20" height="10" rx="2" fill="#ff5a5f"/>
+                                <rect x="33" y="42" width="14" height="6" rx="1" fill="#ff5a5f"/>
+                                <circle cx="34" cy="55" r="2" fill="#111111"/>
+                                <circle cx="46" cy="55" r="2" fill="#111111"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-traffic-light mr-2"></i>Traffic Routes</h5>
+                        <p class="card-text">Find the best route and timings.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Get traffic conditions and optimal travel routes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center column with chat container -->
+            <div class="col-md-6">
+                <div class="chat-container card shadow">
+                    <div class="card-header chat-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-comments mr-2"></i>Chat with Mashal-e-Rah</h5>
+                        <div class="auth-inputs form-inline">
+                            <input type="email" id="emailInput" class="form-control form-control-sm mr-2" placeholder="Email" />
+                            <input type="password" id="passwordInput" class="form-control form-control-sm" placeholder="Password" />
+                        </div>
+                    </div>
+                    <div class="card-body chat-window" id="chatWindow">
+                        <!-- Chat messages will appear here -->
+                        
+                        <!-- Updated Bot typing animation with inline text and dots -->
+                        <div id="botTypingAnimation" class="bot-typing-animation" style="display: none;">
+                            <i class="fas fa-robot robot-icon"></i>
+                            <span class="typing-text">MASHAL-E-RAH IS REPLYING</span>
+                            <div class="typing-dots d-inline-flex ml-1">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer chat-input-area">
+                        <div class="input-group">
+                            <input type="text" id="chatInput" class="form-control" placeholder="Ask Mashal-E-Rah anything...">
+                            <div class="input-group-append ml-2">
+                                <button id="sendButton" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right sidebar with 2 feature cards -->
+            <div class="col-md-3 right-sidebar">
+                <div class="card mb-4 shadow-sm feature-card">
+                    <!-- Traffic Laws animated logo - replaced with two papers -->
+                    <div class="card-img-top animated-logo laws-logo">
+                        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left Paper with lines -->
+                            <g class="paper-left">
+                                <rect x="15" y="25" width="35" height="40" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="1" />
+                                <!-- Text lines on left paper -->
+                                <line x1="20" y1="35" x2="45" y2="35" stroke="#333333" stroke-width="1" />
+                                <line x1="20" y1="40" x2="40" y2="40" stroke="#333333" stroke-width="1" />
+                                <line x1="20" y1="45" x2="43" y2="45" stroke="#333333" stroke-width="1" />
+                                <line x1="20" y1="50" x2="38" y2="50" stroke="#333333" stroke-width="1" />
+                                <line x1="20" y1="55" x2="42" y2="55" stroke="#333333" stroke-width="1" />
+                            </g>
+                            
+                            <!-- Right Paper with lines -->
+                            <g class="paper-right">
+                                <rect x="55" y="25" width="35" height="40" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="1" />
+                                <!-- Text lines on right paper -->
+                                <line x1="60" y1="35" x2="85" y2="35" stroke="#333333" stroke-width="1" />
+                                <line x1="60" y1="40" x2="80" y2="40" stroke="#333333" stroke-width="1" />
+                                <line x1="60" y1="45" x2="83" y2="45" stroke="#333333" stroke-width="1" />
+                                <line x1="60" y1="50" x2="78" y2="50" stroke="#333333" stroke-width="1" />
+                                <line x1="60" y1="55" x2="82" y2="55" stroke="#333333" stroke-width="1" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-gavel mr-2"></i>Traffic & General Laws</h5>
+                        <p class="card-text">Understand traffic and general laws.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Clarifications on regulations and legal queries.
+                    </div>
+                </div>
+                
+                <!-- New feature card for Fuel Price Prediction -->
+                <div class="card mb-4 shadow-sm feature-card">
+                    <!-- Fuel Price animated logo -->
+                    <div class="card-img-top animated-logo fuel-logo">
+                        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Gas Pump -->
+                            <rect x="30" y="20" width="30" height="50" rx="2" fill="#555555"/>
+                            <rect x="25" y="60" width="40" height="10" rx="1" fill="#444444"/>
+                            <rect x="32" y="25" width="26" height="20" rx="1" fill="#222222"/>
+                            <!-- Price Display -->
+                            <g class="price-display">
+                                <rect x="35" y="30" width="20" height="10" fill="#00FF00"/>
+                                <text x="45" y="38" font-family="monospace" font-size="8" fill="#111111" text-anchor="middle" class="price-text">142</text>
+                            </g>
+                            <!-- Nozzle -->
+                            <path d="M60,40 L75,40 L75,50 L70,50 L70,45 L60,45 Z" fill="#333333"/>
+                            <!-- Fuel Drops -->
+                            <g class="fuel-drops">
+                                <circle cx="72" cy="55" r="2" fill="#FFD700"/>
+                                <circle cx="75" cy="60" r="2" fill="#FFD700"/>
+                                <circle cx="70" cy="65" r="2" fill="#FFD700"/>
+                            </g>
+                            <!-- Price Trend Arrows (repositioned higher collectively) -->
+                            <g class="price-arrows">
+                                <!-- Arrow group moved up -->
+                                <g class="arrow-group">
+                                    <!-- Up Arrow - base position moved up -->
+                                    <g class="arrow up-arrow">
+                                        <path d="M10,40 L15,30 L20,40 Z" fill="#00A8E8"/>
+                                    </g>
+                                    <!-- Down Arrow - base position moved up -->
+                                    <g class="arrow down-arrow">
+                                        <path d="M10,40 L15,50 L20,40 Z" fill="#ff5a5f"/>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-gas-pump mr-2"></i>Fuel Price Prediction</h5>
+                        <p class="card-text">Get forecasts for fuel prices.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Plan your budget with accurate fuel price predictions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Markdown Library (e.g., marked.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Price animation script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const priceText = document.querySelector('.price-text');
+            if (priceText) {
+                const prices = ['142', '378', '256', '189'];
+                let index = 0;
+                
+                setInterval(() => {
+                    priceText.textContent = prices[index];
+                    index = (index + 1) % prices.length;
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
